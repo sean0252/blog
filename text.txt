@@ -1,0 +1,52 @@
+Jekyll on macOS
+Supported macOS versionsPermalink
+
+We match Homebrew’s macOS requirements, which typically support the last 2 or 3 macOS versions.
+
+Older macOS versions might work, but we don’t officially support them.
+
+Install RubyPermalink
+
+To install Jekyll on macOS, you need a proper Ruby development environment. While macOS comes preinstalled with Ruby, we don’t recommend using that version to install Jekyll. This external article goes over the various reasons why you shouldn’t use the system Ruby.
+
+Instead, you’ll need to install a separate and newer version of Ruby using a version manager such as asdf, chruby, rbenv, or rvm. Version managers allow you to easily install multiple versions of Ruby, and switch between them.
+
+We recommend chruby because it’s the simplest and least likely to cause issues.
+
+The instructions below are an excerpt from this detailed external guide to install Ruby on Mac. They work best if you’re setting up development tools for the first time on your Mac. If you’ve already tried to install Ruby or Jekyll on your Mac, or if you run into any issues, read that guide.
+
+Step 1: Install HomebrewPermalink
+
+Homebrew makes it easy to install development tools on a Mac.
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+Step 2: Install chruby and the latest Ruby with ruby-installPermalink
+
+Install chruby and ruby-install with Homebrew:
+
+brew install chruby ruby-install
+Install the latest stable version of Ruby (supported by Jekyll):
+
+ruby-install ruby 3.3.5
+This will take a few minutes, and once it’s done, configure your shell to automatically use chruby:
+
+echo "source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh" >> ~/.zshrc
+echo "source $(brew --prefix)/opt/chruby/share/chruby/auto.sh" >> ~/.zshrc
+echo "chruby ruby-3.3.5" >> ~/.zshrc # run 'chruby' to see actual version
+If you’re using Bash, replace .zshrc with .bash_profile. If you’re not sure, read this external guide to find out which shell you’re using.
+
+Quit and relaunch Terminal, then check that everything is working:
+
+ruby -v
+It should show ruby 3.3.5 (2024-09-03 revision ef084cc8f4) or a newer version.
+
+Next, read that same external guide for important notes about setting and switching between Ruby versions with chruby.
+
+Install JekyllPermalink
+
+After installing Ruby with chruby, install the latest Jekyll gem:
+
+gem install jekyll
+TroubleshootingPermalink
+
+See Troubleshooting or ask for help on our forum.
